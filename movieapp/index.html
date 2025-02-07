@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Movie Search</h1>
+      <input type="text" id="searchInput" placeholder="Enter movie keyword" />
+      <button onclick="fetchMovies()" class="src-btn">Search</button>
+      <div id="pagination">
+        <button id="prevPage" onclick="changePage(-1)" disabled>
+          Previous
+        </button>
+        <span id="pageNumber">Page 1</span>
+        <span id="totalPages"></span>
+        <button id="nextPage" onclick="changePage(1)" disabled>Next</button>
+      </div>
+      <div id="loading" style="display: none; text-align: center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+        >
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="#f3f3f3"
+            stroke-width="5"
+            fill="none"
+          />
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="#3498db"
+            stroke-width="5"
+            stroke-linecap="round"
+            fill="none"
+            stroke-dasharray="125.6"
+            stroke-dashoffset="125.6"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              from="125.6"
+              to="0"
+              dur="1.5s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+      </div>
+      <ul id="moviesList"></ul>
+    </div>
+
+    <div id="movieModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn" onclick="closeDetailsModal()">&times;</span>
+        <div id="movieDetails"></div>
+      </div>
+    </div>
+
+    <template id="movieTemplate">
+      <li class="movie">
+        <img class="poster" src="" alt="" />
+        <div class="content">
+          <h2 class="title"></h2>
+          <p class="overview"></p>
+          <div class="footer">
+            <p>
+              <strong>Release Year:</strong> <span class="release-year"></span>
+            </p>
+            <button class="favorite-btn">Add to Favorites</button>
+            <button class="details-btn">Get More Details</button>
+          </div>
+        </div>
+      </li>
+    </template>
+    <template id="movieDetailsTemplate">
+        <h1 class="title"></h1>
+        <h4 class="genres"></h4>
+        <p class="overview"></p>
+        <div class="details-footer">
+            <p class="runtime"></p>
+            <p class="rating"></p>
+        </div>
+    </template>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script.js"
+    ></script>
+  </body>
+</html>
